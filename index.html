@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Amélie ♡</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose-pale: #fce7eb;
+    --rose-poudre: #f5b8c4;
+    --rose-vif: #e84a6a;
+    --rouge-profond: #8a1538;
+    --creme: #fdf6f0;
+    --noir-doux: #2a1419;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(232, 74, 106, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(138, 21, 56, 0.12) 0%, transparent 50%),
+      linear-gradient(135deg, var(--creme) 0%, var(--rose-pale) 100%);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  /* Grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: var(--rouge-profond);
+    margin-bottom: 3rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  .heart-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+  }
+
+  .heart {
+    width: 100%;
+    height: 100%;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(232, 74, 106, 0.4));
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.05); }
+  }
+
+  .question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--noir-doux);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.9s forwards;
+    min-height: 80px;
+  }
+
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-yes {
+    background: linear-gradient(135deg, var(--rose-vif), var(--rouge-profond));
+    color: white;
+    box-shadow: 0 8px 25px rgba(232, 74, 106, 0.4);
+  }
+
+  .btn-yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(232, 74, 106, 0.5);
+  }
+
+  .btn-no {
+    background: transparent;
+    color: var(--rouge-profond);
+    border: 2px solid var(--rose-poudre);
+    transition: all 0.3s ease;
+  }
+
+  .btn-no:hover {
+    background: rgba(245, 184, 196, 0.2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Petits cœurs flottants en arrière-plan */
+  .floating-heart {
+    position: absolute;
+    color: var(--rose-poudre);
+    opacity: 0.4;
+    pointer-events: none;
+    animation: float 8s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+  }
+
+  .signature {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--rose-vif);
+    opacity: 0.7;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Petits cœurs qui flottent en arrière-plan -->
+  <div class="floating-heart" style="left: 10%; font-size: 20px; animation-delay: 0s;">♡</div>
+  <div class="floating-heart" style="left: 25%; font-size: 15px; animation-delay: 2s;">♡</div>
+  <div class="floating-heart" style="left: 70%; font-size: 25px; animation-delay: 4s;">♡</div>
+  <div class="floating-heart" style="left: 85%; font-size: 18px; animation-delay: 1s;">♡</div>
+  <div class="floating-heart" style="left: 50%; font-size: 22px; animation-delay: 3s;">♡</div>
+  <div class="floating-heart" style="left: 35%; font-size: 16px; animation-delay: 5s;">♡</div>
+
+  <div class="container">
+    <p class="title">— Quelque chose t'attend, Amélie —</p>
+    
+    <div class="heart-container">
+      <svg class="heart" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e84a6a"/>
+            <stop offset="100%" style="stop-color:#8a1538"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <path d="M50,85 C50,85 15,60 15,35 C15,22 25,15 35,15 C42,15 47,19 50,25 C53,19 58,15 65,15 C75,15 85,22 85,35 C85,60 50,85 50,85 Z" 
+              fill="url(#heartGrad)" 
+              filter="url(#glow)"/>
+        <path d="M30,28 Q35,22 42,28" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h1 class="question">Veux-tu entrer ?</h1>
+
+    <div class="buttons" id="buttons">
+      <button class="btn btn-yes" id="btnYes" onclick="enter()">Oui</button>
+      <button class="btn btn-no" id="btnNo">Non</button>
+    </div>
+  </div>
+
+  <div class="signature">fait avec ♡</div>
+
+<script>
+  const btnNo = document.getElementById('btnNo');
+  const btnYes = document.getElementById('btnYes');
+  let yesScale = 1;
+  let noClickCount = 0;
+  
+  const noMessages = ["Non", "Vraiment ?", "Sûre ?", "Allez...", "S'il te plaît", "Réfléchis bien", "Une dernière chance", "Non vraiment ?", "Tu me brises le cœur"];
+
+  btnNo.addEventListener('mouseenter', () => {
+    // Le bouton non se déplace de manière aléatoire
+    const container = document.querySelector('.buttons').getBoundingClientRect();
+    const maxX = window.innerWidth - 200;
+    const maxY = window.innerHeight - 100;
+    const newX = Math.random() * (maxX - 100) + 50;
+    const newY = Math.random() * (maxY - 100) + 50;
+    
+    btnNo.style.position = 'fixed';
+    btnNo.style.left = newX + 'px';
+    btnNo.style.top = newY + 'px';
+    btnNo.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  });
+
+  btnNo.addEventListener('click', (e) => {
+    e.preventDefault();
+    noClickCount++;
+    
+    // Le bouton oui grossit à chaque clic sur non
+    yesScale += 0.25;
+    btnYes.style.transform = `scale(${yesScale})`;
+    btnYes.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    
+    // Change le texte du bouton non
+    if (noClickCount < noMessages.length) {
+      btnNo.textContent = noMessages[noClickCount];
+    }
+    
+    // Le bouton non rétrécit
+    const noScale = Math.max(0.3, 1 - noClickCount * 0.1);
+    btnNo.style.fontSize = (1.1 * noScale) + 'rem';
+    btnNo.style.padding = (1 * noScale) + 'rem ' + (2.5 * noScale) + 'rem';
+  });
+
+  function enter() {
+    // Animation de sortie avant transition
+    document.body.style.transition = 'opacity 0.8s ease';
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+      window.location.href = 'amelie.html';
+    }, 800);
+  }
+
+  // Créer plus de cœurs flottants dynamiquement
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = '♡';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
+    heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }, 2000);
+</script>
+
+</body>
+</html>
