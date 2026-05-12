@@ -231,20 +231,6 @@
   
   const noMessages = ["Non", "Vraiment ?", "Sûre ?", "Allez...", "S'il te plaît", "Réfléchis bien", "Une dernière chance", "Non vraiment ?", "Tu me brises le cœur"];
 
-  btnNo.addEventListener('mouseenter', () => {
-    // Le bouton non se déplace de manière aléatoire
-    const container = document.querySelector('.buttons').getBoundingClientRect();
-    const maxX = window.innerWidth - 200;
-    const maxY = window.innerHeight - 100;
-    const newX = Math.random() * (maxX - 100) + 50;
-    const newY = Math.random() * (maxY - 100) + 50;
-    
-    btnNo.style.position = 'fixed';
-    btnNo.style.left = newX + 'px';
-    btnNo.style.top = newY + 'px';
-    btnNo.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-  });
-
   btnNo.addEventListener('click', (e) => {
     e.preventDefault();
     noClickCount++;
