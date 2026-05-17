@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour ton sourire ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=La+Belle+Aurore&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fdf8f3;
+    --paper:#f7ede1;
+    --rose:#e8b4b8;
+    --rose-deep:#c98a8e;
+    --ink:#6b4a3d;
+    --ink-soft:#9a7b6e;
+    --gold:#c9a96e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow-x:hidden}
+  body{
+    background:
+      radial-gradient(ellipse at 20% 10%, #fce8e6 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, #f3e4d3 0%, transparent 50%),
+      var(--cream);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    min-height:100vh;
+    position:relative;
+    padding:60px 24px 80px;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    opacity:.35;
+    z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;
+  }
+
+  .floating-hearts{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  }
+  .floating-hearts span{
+    position:absolute;
+    color:var(--rose);
+    font-size:18px;
+    opacity:0;
+    animation:floatUp linear infinite;
+    text-shadow:0 0 8px rgba(232,180,184,.4);
+  }
+  @keyframes floatUp{
+    0%{transform:translateY(110vh) rotate(0deg);opacity:0}
+    10%{opacity:.55}
+    90%{opacity:.4}
+    100%{transform:translateY(-15vh) rotate(360deg);opacity:0}
+  }
+
+  .drifting-words{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  }
+  .drifting-words span{
+    position:absolute;
+    font-family:'Parisienne', cursive;
+    color:var(--rose-deep);
+    opacity:.18;
+    white-space:nowrap;
+    animation:drift linear infinite;
+  }
+  @keyframes drift{
+    from{transform:translateX(-30vw) rotate(var(--rot,-4deg))}
+    to{transform:translateX(110vw) rotate(var(--rot,-4deg))}
+  }
+
+  main{
+    position:relative;
+    z-index:2;
+    max-width:920px;
+    margin:0 auto;
+  }
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:48px;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1rem;
+  }
+  .topbar a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:all .4s ease;
+  }
+  .topbar a:hover{
+    color:var(--rose-deep);
+    border-bottom-color:var(--rose-deep);
+  }
+  .topbar .date{letter-spacing:.15em;font-size:.85rem;text-transform:lowercase}
+
+  .hero{
+    text-align:center;
+    margin:40px 0 70px;
+    opacity:0;
+    animation:fadeIn 1.4s ease .2s forwards;
+  }
+  .hero .eyebrow{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:1.15rem;
+    letter-spacing:.08em;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-family:'Parisienne', cursive;
+    font-size:clamp(3rem, 9vw, 5.5rem);
+    color:var(--ink);
+    font-weight:400;
+    line-height:1;
+    margin-bottom:24px;
+    text-shadow:0 2px 20px rgba(232,180,184,.3);
+  }
+  .hero .heart-line{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    color:var(--rose-deep);
+    margin-top:14px;
+  }
+  .hero .heart-line::before,
+  .hero .heart-line::after{
+    content:"";
+    width:60px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--rose-deep), transparent);
+  }
+  .hero .heart-line span{font-size:1.4rem;animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{50%{transform:scale(1.15)}}
+
+  @keyframes fadeIn{to{opacity:1}}
+
+  .wall{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:22px;
+    margin:60px 0 80px;
+  }
+  .note{
+    position:relative;
+    padding:28px 22px;
+    border-radius:3px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    line-height:1.4;
+    color:var(--ink);
+    background:var(--paper);
+    box-shadow:
+      0 1px 2px rgba(107,74,61,.08),
+      0 8px 24px rgba(107,74,61,.12);
+    transform:rotate(var(--r, -2deg));
+    transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+    opacity:0;
+    animation:noteIn .9s ease forwards;
+    animation-delay:var(--d, 0s);
+  }
+  .note:nth-child(3n){background:#fde8e4}
+  .note:nth-child(5n){background:#f4ead8}
+  .note:nth-child(7n){background:#f6e0dc}
+  .note::before{
+    content:"";
+    position:absolute;
+    top:-8px;left:50%;
+    transform:translateX(-50%) rotate(calc(var(--r, -2deg) * -1));
+    width:60px;height:18px;
+    background:rgba(201,169,110,.35);
+    border:1px solid rgba(201,169,110,.5);
+    border-radius:1px;
+    box-shadow:0 2px 4px rgba(0,0,0,.05);
+  }
+  .note:hover{
+    transform:rotate(0deg) translateY(-6px) scale(1.04);
+    box-shadow:
+      0 4px 8px rgba(107,74,61,.1),
+      0 20px 40px rgba(107,74,61,.18);
+    z-index:5;
+  }
+  @keyframes noteIn{
+    from{opacity:0;transform:rotate(0deg) translateY(20px)}
+    to{opacity:1;transform:rotate(var(--r, -2deg)) translateY(0)}
+  }
+
+  .ring-section{
+    position:relative;
+    margin:90px auto;
+    max-width:680px;
+    text-align:center;
+    padding:60px 30px;
+  }
+  .ring-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, transparent, rgba(253,232,230,.5), transparent);
+    border-top:1px solid rgba(201,169,110,.3);
+    border-bottom:1px solid rgba(201,169,110,.3);
+    z-index:-1;
+  }
+  .ring-section .ornament{
+    font-family:'Parisienne', cursive;
+    color:var(--gold);
+    font-size:1.4rem;
+    margin-bottom:18px;
+    letter-spacing:.1em;
+  }
+  .ring-section h2{
+    font-family:'Parisienne', cursive;
+    font-size:clamp(2rem, 6vw, 3.2rem);
+    color:var(--ink);
+    font-weight:400;
+    margin-bottom:30px;
+    line-height:1.1;
+  }
+  .ring-svg{
+    width:110px;
+    height:110px;
+    margin:10px auto 28px;
+    display:block;
+    filter:drop-shadow(0 4px 14px rgba(201,169,110,.5));
+    animation:ringFloat 4s ease-in-out infinite;
+  }
+  @keyframes ringFloat{
+    0%,100%{transform:translateY(0) rotate(-5deg)}
+    50%{transform:translateY(-12px) rotate(5deg)}
+  }
+  .ring-section p{
+    font-size:1.3rem;
+    line-height:1.7;
+    font-style:italic;
+    color:var(--ink);
+    margin-bottom:18px;
+    max-width:540px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .ring-section .post-scriptum{
+    font-family:'La Belle Aurore', cursive;
+    color:var(--rose-deep);
+    font-size:1.35rem;
+    font-style:normal;
+    margin-top:36px;
+    line-height:1.6;
+  }
+
+  .closing{
+    text-align:center;
+    margin-top:80px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .closing .made{
+    margin-top:30px;
+    font-size:.85rem;
+    letter-spacing:.2em;
+    text-transform:lowercase;
+    color:var(--ink-soft);
+    opacity:.7;
+  }
+  .closing .made::before,
+  .closing .made::after{content:" ♡ "}
+
+  @media (max-width:600px){
+    body{padding:40px 16px 60px}
+    .wall{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:16px}
+    .note{padding:22px 18px;font-size:1.05rem}
+    .ring-section{margin:60px auto;padding:40px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-hearts" id="hearts"></div>
+<div class="drifting-words" id="words"></div>
+
+<main>
+
+  <div class="topbar">
+    <a href="index.html">← retour</a>
+    <span class="date">une lettre pour toi</span>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">— pour faire revenir ton sourire —</div>
+    <h1>Amélie</h1>
+    <div class="heart-line"><span>♡</span></div>
+  </section>
+
+  <section class="wall" id="wall"></section>
+
+  <div class="closing">
+    <div>chaque ligne ici a été écrite en pensant à toi.</div>
+  </div>
+
+</main>
+
+<script>
+  const notes = [
+    "Tu rends le silence joli.",
+    "Ton rire, c'est ma chanson préférée.",
+    "Même tes défauts me sont précieux.",
+    "Tu me rends meilleur, sans rien faire.",
+    "Tu es ma plus belle distraction.",
+    "Avec toi, tout devient doux.",
+    "Tes yeux m'ont volé quelque chose.",
+    "Je pense à toi, encore.",
+    "Tu manques à mes mains.",
+    "Reviens, le café est meilleur à deux.",
+    "Mon cœur a pris ton accent.",
+    "Tu es ma parenthèse préférée.",
+    "Garde ton sourire — il est à moi maintenant.",
+    "Je collectionne tes regards.",
+    "Tu es la phrase que je relis.",
+    "Mon oreiller sent encore ton parfum.",
+    "Tu es ma raison de me lever tôt.",
+    "Avec toi, le temps fait des bêtises."
+  ];
+
+  const wall = document.getElementById('wall');
+  notes.forEach((text, i) => {
+    const el = document.createElement('div');
+    el.className = 'note';
+    const rot = (Math.random() * 6 - 3).toFixed(2);
+    const delay = (i * 0.08).toFixed(2);
+    el.style.setProperty('--r', rot + 'deg');
+    el.style.setProperty('--d', delay + 's');
+    el.textContent = '« ' + text + ' »';
+    wall.appendChild(el);
+  });
+
+  const heartsContainer = document.getElementById('hearts');
+  function spawnHeart(){
+    const h = document.createElement('span');
+    h.textContent = '♡';
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (12 + Math.random() * 18) + 'px';
+    h.style.animationDuration = (8 + Math.random() * 10) + 's';
+    h.style.animationDelay = (Math.random() * -8) + 's';
+    h.style.opacity = .4 + Math.random() * .4;
+    heartsContainer.appendChild(h);
+    setTimeout(() => h.remove(), 20000);
+  }
+  for(let i = 0; i < 18; i++) spawnHeart();
+  setInterval(spawnHeart, 1400);
+
+  const driftWords = [
+    "reviens", "tu me manques", "mon Amélie",
+    "ma douce", "encore toi", "à bientôt", "♡", "tendrement",
+    "ma préférée", "souviens-toi", "pense à moi", "à toi"
+  ];
+  const wordsContainer = document.getElementById('words');
+  function spawnWord(){
+    const w = document.createElement('span');
+    w.textContent = driftWords[Math.floor(Math.random() * driftWords.length)];
+    w.style.top = Math.random() * 100 + 'vh';
+    w.style.fontSize = (24 + Math.random() * 40) + 'px';
+    w.style.setProperty('--rot', (Math.random() * 16 - 8) + 'deg');
+    w.style.animationDuration = (22 + Math.random() * 18) + 's';
+    wordsContainer.appendChild(w);
+    setTimeout(() => w.remove(), 45000);
+  }
+  for(let i = 0; i < 5; i++){
+    setTimeout(spawnWord, i * 1200);
+  }
+  setInterval(spawnWord, 3500);
+</script>
+
+</body>
+</html>
